@@ -166,7 +166,9 @@ const Grid: React.FC<GridProps> = () => {
       )
       .filter(
         (data) =>
-          data.name.match(searchTxt) || data.age.match(searchTxt) || data.weight.match(searchTxt),
+          data.name.toLowerCase().match(searchTxt.toLowerCase()) ||
+          data.age.toLowerCase().match(searchTxt.toLowerCase()) ||
+          data.weight.toLowerCase().match(searchTxt.toLowerCase()),
       );
 
     const node = sortDataCollect.map((data) => (
