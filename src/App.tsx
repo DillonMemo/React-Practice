@@ -1,26 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+/** @jsx jsx */
+import { jsx, css } from '@emotion/core';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
+/** components */
+import Header from './components/Header';
+import Todo from './pages/Todo';
+import Grid from './pages/Grid';
+import Modals from './pages/Modals';
+import Counter from './pages/Counter';
+import Async from './pages/Async';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div css={rootWrapper}>
+        <Header />
+        <Switch>
+          <Route exact path="/Todo">
+            <Todo />
+          </Route>
+          <Route path="/grid">
+            <Grid />
+          </Route>
+          <Route path="/modals">
+            <Modals />
+          </Route>
+          <Route path="/counter">
+            <Counter />
+          </Route>
+          <Route path="/async">
+            <Async />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
+
+const rootWrapper = css`
+  margin: 0 1rem;
+`;
 
 export default App;
